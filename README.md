@@ -1,5 +1,6 @@
 # Minecraft-Modpack-Switcher
 a program that allows you to switcher between Minecraft modpack easily and effectively. 
+only for Java Minecraft launcher
 
 
 #Current_features
