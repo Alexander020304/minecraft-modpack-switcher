@@ -16,3 +16,4 @@ only for Java Minecraft launcher
 2. profile switching
 3. modpack combinations
 4. modpack type idification(forge/fabric/quilt)
+5. Minecraft benchmarking
