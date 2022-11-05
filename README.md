@@ -9,7 +9,6 @@ only for Java Minecraft launcher
 
 #know_bugs
 
-It fails to find the minecraft.exe file
 
 #furture improvments
 
