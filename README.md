@@ -1,4 +1,4 @@
-# minecraft-Modpack-Switcher
+# Minecraft-Modpack-Switcher
 a program that allows you to switcher between Minecraft modpack easily and effectively. 
 
 
