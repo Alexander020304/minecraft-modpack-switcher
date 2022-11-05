@@ -4,8 +4,11 @@ def Exit_and_Run_Minecraft():
     S.root.destroy()
     Devloper_mode=False
     if Devloper_mode ==False:
-        
-        subprocess.call("C:/Program Files (x86)/Minecraft Launcher/MinecraftLauncher")
+        if __name__ == "__main__":
+            subprocess.call("C:\XboxGames\Minecraft Launcher\Content\Minecraft.exe")
+            
+            
+        print("testcomplete")
 
 def read(pathway):
     file=open(pathway,"r")
