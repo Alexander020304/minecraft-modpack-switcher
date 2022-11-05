@@ -10,3 +10,4 @@ It fails to find the minecraft.exe file
 1. numba perforamance increases
 2. profile switching
 3. modpack combinations
+4. modpack idification 
