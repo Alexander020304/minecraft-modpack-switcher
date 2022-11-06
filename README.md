@@ -6,6 +6,7 @@ only for Java Minecraft launcher(windows only but it could easily be reconfigure
 #Current_features
 1. mods idification(with color)
 2. modpack idification
+3. launches Minecraft when done
 
 #know_bugs
 
