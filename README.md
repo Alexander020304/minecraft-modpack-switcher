@@ -17,3 +17,5 @@ only for Java Minecraft launcher(windows only but it could easily be reconfigure
 3. modpack combinations
 4. modpack type idification(forge/fabric/quilt)
 5. Minecraft benchmarking
+6. mod updating
+
