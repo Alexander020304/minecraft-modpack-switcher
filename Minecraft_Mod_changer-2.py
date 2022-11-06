@@ -2,13 +2,10 @@ import os,tkinter,json,sys,ctypes,subprocess
 
 def Exit_and_Run_Minecraft():
     S.root.destroy()
-    Devloper_mode=False
+    Devloper_mode=True
     if Devloper_mode ==False:
         if __name__ == "__main__":
             subprocess.call("C:\XboxGames\Minecraft Launcher\Content\Minecraft.exe")
-            
-            
-        print("testcomplete")
 
 def read(pathway):
     file=open(pathway,"r")
@@ -18,7 +15,6 @@ def read(pathway):
 def write(Pathway,information):
     file=open(Pathway,"w",)
     file.write(information)
-
   
 def rgb_hack(rgb):
     return "#%02x%02x%02x" % rgb  
@@ -69,18 +65,20 @@ class System():
         
         try:
             current_pack=read(pathway)
+            if current_pack=="":
+                current_pack=None
+                self.fabric,self.forge,self.quilt=0,0,0
         except FileNotFoundError:
             write(pathway,information="unknown")
             current_pack=None
+            self.fabric,self.forge,self.quilt=0,0,0
 
-        
-        
         Current_mods=os.listdir(self.Mod_Pathway[:-1])
         for I in range(len(Current_mods)):
             if Current_mods[I][-4:]== ".jar" and os.path.isdir(self.Mod_Pathway+Current_mods[I])!=True:
 
                 if current_pack==None:
-                    mod_type(Current_mods,I)
+                    current_pack=mod_type(Current_mods,I)
                         
                 Letters=list(Current_mods[I][:-4])
                 R,G,B=0,0,0
@@ -108,40 +106,46 @@ class System():
                 mylist.itemconfig(I-number_of_non_mods, {'fg':rgb_hack((R,G,B)),'bg':'black'})
             else:
                 number_of_non_mods=number_of_non_mods+1
-            
+
+        print(current_pack)  
         nub=I+1
-        #if fabric/nub> forge/nub:
-         #   print("fabric")
-        #else:
-          #  print("forge")
+        if current_pack==True:
+            print("fabric")
+        elif current_pack=False:
+
+        elif self.fabric>self.forge and self.fabric>self.quilt:#fabric byists
+
+        elif self.forge>self.fabric and self.fabric>self.quilt:
+            
             
 def mod_type(Current_mods,I):
-    fabric,forge,quilt=0,0,0
     current_mod=Current_mods[I].lower()
     Fabric_mod=current_mod.find("fabric")
     Forge_mod=current_mod.find("froge")
     Quilt_mod=current_mod.find("quilt")
                                 
     if current_mod.find("fabric-api")!=-1:
-        current_pack=True #farbic
-    elif current_mod.find("qfapi")!=-1:
-        current_pack=False #quilt
+        return True #farbic
+    elif current_mod.find("qfapi")!=-1: 
+        return False #quilt
+    elif Fabric_mod!=-1:
+        S.fabric=S.fabric+1
+    elif Forge_mod!=-1:
+        S.forge=S.forge+1
+    elif Quilt_mod!=-1:
+        S.quilt=S.quilt+1
     elif Fabric_mod!=-1 and Forge_mod!=-1 and Quilt_mod!=-1:
         None
     elif Fabric_mod!=-1 and Forge_mod!=-1:
         None
     elif Fabric_mod!=-1 and Quilt_mod!=-1:
         None
-    elif Fabric_mod!=-1:
-        fabric=fabric+1
-    elif Forge_mod!=-1:
-        forge=forge+1
-    elif Quilt_mod!=-1:
-        quilt=quilt+1
+        
+    
             
 def mod_version():
     print(test)
-       
+           
 def find_Minecaft_pathway():
     try:
         import getpass
