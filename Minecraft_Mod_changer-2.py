@@ -112,11 +112,13 @@ class System():
         if current_pack==True:
             print("fabric")
         elif current_pack=False:
-
+            print("quilt")
         elif self.fabric>self.forge and self.fabric>self.quilt:#fabric byists
-
+            print("fabric")
         elif self.forge>self.fabric and self.fabric>self.quilt:
-            
+            print("forge")
+        elif self.quilt>self.fabric and self.quilt>self.forge:
+            print("quilt")
             
 def mod_type(Current_mods,I):
     current_mod=Current_mods[I].lower()
@@ -128,18 +130,14 @@ def mod_type(Current_mods,I):
         return True #farbic
     elif current_mod.find("qfapi")!=-1: 
         return False #quilt
-    elif Fabric_mod!=-1:
-        S.fabric=S.fabric+1
-    elif Forge_mod!=-1:
-        S.forge=S.forge+1
-    elif Quilt_mod!=-1:
-        S.quilt=S.quilt+1
-    elif Fabric_mod!=-1 and Forge_mod!=-1 and Quilt_mod!=-1:
-        None
-    elif Fabric_mod!=-1 and Forge_mod!=-1:
-        None
-    elif Fabric_mod!=-1 and Quilt_mod!=-1:
-        None
+    else:
+        if Fabric_mod!=-1 and :
+            S.fabric=S.fabric+1
+        if Forge_mod!=-1 and:
+            S.forge=S.forge+1
+        if Quilt_mod!=-1 and :
+            S.quilt=S.quilt+1
+    
         
     
             
@@ -197,7 +195,6 @@ opt.pack(side="top",anchor="nw")
 scrollbar = tkinter.Scrollbar(S.root)
 scrollbar.pack( side = "right",fill = "y",anchor="e")
 mylist = tkinter.Listbox(S.root, yscrollcommand = scrollbar.set ,width=100)
-
 
 S.find_Minecraft_Mods()
 scrollbar.config( command = mylist.yview )
