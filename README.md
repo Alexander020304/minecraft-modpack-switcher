@@ -8,6 +8,7 @@ only for Java Minecraft launcher(windows only but it could easily be reconfigure
 2. modpack idification
 3. modpack type idification(forge/fabric/quilt)
 4. launches Minecraft when done
+5. mod updating(beta)
 
 #know_bugs
 
@@ -18,5 +19,5 @@ only for Java Minecraft launcher(windows only but it could easily be reconfigure
 2. profile switching
 3. modpack combinations
 4. Minecraft benchmarking
-5. mod updating
+
 
