@@ -1,5 +1,4 @@
-import os,tkinter,json,sys,ctypes,subprocess,re
-
+import os,tkinter,json,sys,ctypes,subprocess,re,requests,threading
 
 def Exit_and_Run_Minecraft():
     S.root.destroy()
@@ -18,8 +17,12 @@ def write(Pathway,information):
     file.write(information)
   
 def rgb_hack(rgb):
-    return "#%02x%02x%02x" % rgb  
-    
+    return "#%02x%02x%02x" % rgb
+
+#x = requests.get("https://cdn.modrinth.com/data/AANobbMI/versions/rAfhHfow/sodium-fabric-mc1.19.2-0.4.4%2Bbuild.18.jar")
+#file=open("C:/Users/alexf/AppData/Roaming/.minecraft/mods/test","wb",)
+#file.write(x.content)
+
 class System():
     def __init__(self):
         user32 = ctypes.windll.user32
@@ -76,9 +79,11 @@ class System():
         Current_mods=os.listdir(self.Mod_Pathway[:-1])
         for I in range(len(Current_mods)):
             if Current_mods[I][-4:]== ".jar" and os.path.isdir(self.Mod_Pathway+Current_mods[I])!=True:
-
+                
+                current_mod=Current_mods[I].lower()
+                threading.Thread(target=update_mod, args=(current_mod,)).start()
+                
                 if current_pack==None:
-                    current_mod=Current_mods[I].lower()
                     current_pack=mod_type(current_mod)
                     mod_version(current_mod)
 
@@ -141,8 +146,20 @@ def mod_type(current_mod):
     
 def mod_version(current_mod):
     a=re.sub('\D', '',current_mod)
-    print(a)
-           
+    #print(a)
+
+def update_mod(Current_mod):
+    s=Current_mod[:-4].replace("fabric","").replace("build","").replace("mc","").replace(".","").replace("+","").replace("-","").replace("v","").replace("forge","").replace("quilt","")
+    test=re.sub(r'[0-9]+', '', s)
+
+    link_pref="https://modrinth.com/mod/"+test
+    if requests.get(link_pref).status_code==200:
+         req=requests.get(link_pref+"/versions").content
+         write("test",str(req))
+    else:
+         print(test+"\n")
+
+    
 def find_Minecaft_pathway():
     try:
         import getpass
@@ -176,7 +193,7 @@ file=open(S.Minecraft_Pathway+"launcher_profiles.json")
 Minecraft_profiles=json.load(file)
 file.close()
 
-print(Minecraft_profiles)
+#print(Minecraft_profiles)
 
 Minecraft_Mod_Pack_List=S.find_Minecraft_Mod_Packs()
 
