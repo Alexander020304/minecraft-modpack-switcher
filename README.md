@@ -6,7 +6,8 @@ only for Java Minecraft launcher(windows only but it could easily be reconfigure
 #Current_features
 1. mods idification(with color)
 2. modpack idification
-3. launches Minecraft when done
+3. modpack type idification(forge/fabric/quilt)
+4. launches Minecraft when done
 
 #know_bugs
 
@@ -16,7 +17,6 @@ only for Java Minecraft launcher(windows only but it could easily be reconfigure
 1. numba perforamance increases
 2. profile switching
 3. modpack combinations
-4. modpack type idification(forge/fabric/quilt)
-5. Minecraft benchmarking
-6. mod updating
+4. Minecraft benchmarking
+5. mod updating
 
