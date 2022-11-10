@@ -1,4 +1,5 @@
-import os,tkinter,json,sys,ctypes,subprocess
+import os,tkinter,json,sys,ctypes,subprocess,re
+
 
 def Exit_and_Run_Minecraft():
     S.root.destroy()
@@ -46,7 +47,6 @@ class System():
         mylist.delete(0, "end")
         self.find_Minecraft_Mods()
 
-        
     def find_Minecraft_Mod_Packs(self):
         Minecraft_Mod_Pack_List=[self.current_modpack]
         Minecraft_Mod_Pack_List_Unchekced=os.listdir(self.Minecraft_Pathway)
@@ -78,8 +78,11 @@ class System():
             if Current_mods[I][-4:]== ".jar" and os.path.isdir(self.Mod_Pathway+Current_mods[I])!=True:
 
                 if current_pack==None:
-                    current_pack=mod_type(Current_mods,I)
-                        
+                    current_mod=Current_mods[I].lower()
+                    current_pack=mod_type(current_mod)
+                    mod_version(current_mod)
+
+                   
                 Letters=list(Current_mods[I][:-4])
                 R,G,B=0,0,0
              
@@ -111,7 +114,7 @@ class System():
         nub=I+1
         if current_pack==True:
             print("fabric")
-        elif current_pack=False:
+        elif current_pack==False:
             print("quilt")
         elif self.fabric>self.forge and self.fabric>self.quilt:#fabric byists
             print("fabric")
@@ -120,29 +123,25 @@ class System():
         elif self.quilt>self.fabric and self.quilt>self.forge:
             print("quilt")
             
-def mod_type(Current_mods,I):
-    current_mod=Current_mods[I].lower()
+def mod_type(current_mod):
     Fabric_mod=current_mod.find("fabric")
     Forge_mod=current_mod.find("froge")
-    Quilt_mod=current_mod.find("quilt")
-                                
+    Quilt_mod=current_mod.find("quilt")                        
     if current_mod.find("fabric-api")!=-1:
         return True #farbic
     elif current_mod.find("qfapi")!=-1: 
         return False #quilt
     else:
-        if Fabric_mod!=-1 and :
-            S.fabric=S.fabric+1
-        if Forge_mod!=-1 and:
-            S.forge=S.forge+1
-        if Quilt_mod!=-1 and :
-            S.quilt=S.quilt+1
+        if Fabric_mod!=-1:
+            S.fabric+=+1
+        if Forge_mod!=-1:
+            S.forge+=+1
+        if Quilt_mod!=-1:
+            S.quilt+=1
     
-        
-    
-            
-def mod_version():
-    print(test)
+def mod_version(current_mod):
+    a=re.sub('\D', '',current_mod)
+    print(a)
            
 def find_Minecaft_pathway():
     try:
